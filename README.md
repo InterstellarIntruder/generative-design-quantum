@@ -17,12 +17,24 @@ Quantum computing offers possibilities for generative design and computational a
     - Visualization of quantum states using turtle graphics
     - Implementation of quantum random walks
     - Creating quantum-inspired generative art
+    - Two key examples demonstrating quantum principles:
+      - Single Quantum Turtle: Demonstrates superposition and measurement
+      - Entangled Turtles: Shows quantum entanglement and correlation
 
 ## Code Examples
 
-### Quantum Turtle
+### 1. Quantum Turtle
 The `quantum_turtle.py` module demonstrates basic quantum computing concepts through visual art:
 - Quantum superposition
 - Quantum measurement
 - Quantum randomness
 - Visual representation of quantum states
+
+### 2. Entangled Turtles
+The `entangled_turtles.py` module visualizes quantum entanglement:
+- Bell state creation
+- Perfect quantum correlation
+- "Spooky action at a distance"
+- Synchronized quantum measurements
+
+Both examples use turtle graphics to create mesmerizing patterns that help visualize these quantum phenomena in an intuitive and artistic way.

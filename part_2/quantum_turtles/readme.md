@@ -4,9 +4,6 @@ A creative visualization tool that combines quantum computing concepts with turt
 
 ## Overview
 
-This tutorial contains two examples that demonstrate fundamental quantum computing concepts through visual art:
-
-### 1. Quantum Turtle
 The Quantum Turtle uses quantum superposition and measurement to create mesmerizing visual patterns. As it moves, it visualizes:
 
 - Quantum superposition states using branching paths
@@ -18,23 +15,10 @@ The visualization shows:
 - Yellow paths: Possible |1⟩ state direction (-45 degrees) 
 - Cyan paths: The actual measured path taken
 
-### 2. Entangled Turtles
-The Entangled Turtles demonstrate quantum entanglement by using two quantum turtles that move in perfect correlation:
-
-- Quantum entanglement through synchronized turtle movements
-- Bell state superposition using branching paths
-- Perfect correlation between entangled qubits
-
-The visualization shows:
-- Dark magenta paths: Possible |0⟩ state direction for both qubits
-- Dark yellow paths: Possible |1⟩ state direction for both qubits
-- Blue/Green paths: The actual measured paths taken by the entangled pair
-
 ## Technical Implementation
 
 The project uses Cirq, Google's quantum computing framework, to simulate quantum behavior:
 
-### Quantum Turtle Implementation:
 - **Quantum Circuit**: Creates a single qubit circuit using `cirq.GridQubit(0, 0)`
 - **Hadamard Gate**: Applies H-gates to create quantum superposition states
 - **State Visualization**: 
@@ -42,15 +26,12 @@ The project uses Cirq, Google's quantum computing framework, to simulate quantum
   - Probability of |0⟩ and |1⟩ states determines path transparency
   - Each quantum walk creates a branching pattern showing both potential paths
 
-### Entangled Turtles Implementation:
-- **Bell State Creation**:
-  1. Creates two qubits and applies Hadamard (H) gate to first qubit
-  2. Uses CNOT gate to entangle the qubits
-  3. Creates the Bell state: (|00⟩ + |11⟩)/√2
-- **Entanglement Visualization**:
-  - Measures both qubits in the computational basis
-  - Shows perfect correlation in measurement outcomes
-  - Both turtles always take matching paths due to entanglement
+The main pattern is created by:
+1. Initializing a quantum circuit
+2. Applying superposition (H-gate)
+3. Simulating the quantum state
+4. Drawing branching paths based on quantum probabilities
+5. Rotating and repeating to create circular patterns
 
 ## Requirements
 
