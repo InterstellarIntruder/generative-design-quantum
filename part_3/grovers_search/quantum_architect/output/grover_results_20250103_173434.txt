@@ -1,0 +1,70 @@
+GROVER'S ALGORITHM (Option 2) FOR NON-OVERLAPPING ADJACENCY
+==================================================
+
+We have 4 room-qubits in a row. We want states that satisfy:
+- Exactly 2 public rooms (i.e. exactly two 1s).
+- Exactly one adjacency pair, but *only* in (q0,q1) or (q2,q3).
+Hence valid states are 1100 and 0011 only.
+We build the oracle to check both conditions inside the circuit.
+
+Starting runs...
+
+---------- Running with 1 Grover iteration ----------
+Results from 1000 shots:
+  0011 -> [_][_][P][P], Count = 299 (29.9%) VALID
+  0101 -> [_][P][_][P], Count = 99 (9.9%) invalid
+  1111 -> [P][P][P][P], Count = 93 (9.3%) invalid
+  1001 -> [P][_][_][P], Count = 89 (8.9%) invalid
+  1011 -> [P][_][P][P], Count = 89 (8.9%) invalid
+  0111 -> [_][P][P][P], Count = 89 (8.9%) invalid
+  1101 -> [P][P][_][P], Count = 88 (8.8%) invalid
+  1100 -> [P][P][_][_], Count = 79 (7.9%) VALID
+  0001 -> [_][_][_][P], Count = 58 (5.8%) invalid
+  0000 -> [_][_][_][_], Count = 4 (0.4%) invalid
+  1010 -> [P][_][P][_], Count = 3 (0.3%) invalid
+  0110 -> [_][P][P][_], Count = 3 (0.3%) invalid
+  1000 -> [P][_][_][_], Count = 3 (0.3%) invalid
+  0010 -> [_][_][P][_], Count = 2 (0.2%) invalid
+  1110 -> [P][P][P][_], Count = 1 (0.1%) invalid
+  0100 -> [_][P][_][_], Count = 1 (0.1%) invalid
+
+---------- Running with 2 Grover iterations ----------
+Results from 1000 shots:
+  0011 -> [_][_][P][P], Count = 329 (32.9%) VALID
+  1100 -> [P][P][_][_], Count = 127 (12.7%) VALID
+  0001 -> [_][_][_][P], Count = 56 (5.6%) invalid
+  0111 -> [_][P][P][P], Count = 45 (4.5%) invalid
+  1110 -> [P][P][P][_], Count = 43 (4.3%) invalid
+  1000 -> [P][_][_][_], Count = 43 (4.3%) invalid
+  0110 -> [_][P][P][_], Count = 43 (4.3%) invalid
+  0010 -> [_][_][P][_], Count = 40 (4.0%) invalid
+  1111 -> [P][P][P][P], Count = 40 (4.0%) invalid
+  1010 -> [P][_][P][_], Count = 39 (3.9%) invalid
+  0101 -> [_][P][_][P], Count = 36 (3.6%) invalid
+  1001 -> [P][_][_][P], Count = 35 (3.5%) invalid
+  0100 -> [_][P][_][_], Count = 35 (3.5%) invalid
+  1101 -> [P][P][_][P], Count = 34 (3.4%) invalid
+  1011 -> [P][_][P][P], Count = 28 (2.8%) invalid
+  0000 -> [_][_][_][_], Count = 27 (2.7%) invalid
+
+---------- Running with 3 Grover iterations ----------
+Results from 1000 shots:
+  0011 -> [_][_][P][P], Count = 165 (16.5%) VALID
+  0001 -> [_][_][_][P], Count = 95 (9.5%) invalid
+  0111 -> [_][P][P][P], Count = 93 (9.3%) invalid
+  1011 -> [P][_][P][P], Count = 85 (8.5%) invalid
+  1001 -> [P][_][_][P], Count = 82 (8.2%) invalid
+  1111 -> [P][P][P][P], Count = 80 (8.0%) invalid
+  0101 -> [_][P][_][P], Count = 80 (8.0%) invalid
+  1101 -> [P][P][_][P], Count = 76 (7.6%) invalid
+  1100 -> [P][P][_][_], Count = 57 (5.7%) VALID
+  0110 -> [_][P][P][_], Count = 38 (3.8%) invalid
+  1000 -> [P][_][_][_], Count = 31 (3.1%) invalid
+  1010 -> [P][_][P][_], Count = 30 (3.0%) invalid
+  0100 -> [_][P][_][_], Count = 24 (2.4%) invalid
+  1110 -> [P][P][P][_], Count = 24 (2.4%) invalid
+  0010 -> [_][_][P][_], Count = 21 (2.1%) invalid
+  0000 -> [_][_][_][_], Count = 19 (1.9%) invalid
+
+Saved log to grover_results_20250103_173434.txt
+Saved plot to grover_plot_20250103_173434.png
