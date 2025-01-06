@@ -1,22 +1,19 @@
-flowchart TD
-    A[Start: Room Configuration Inputs] --> B{Check q0 and q1: Are both public spaces?}
-    B -->|Yes| C[Set a_adj0 = 1]
-    B -->|No| D[Skip setting a_adj0]
+flowchart LR
+    A[Superposition of room quibits with Hadamard gate] --> B{Check for adjacent spaces with <b>X</b> gate.}
+    B -->|if - q0 & q1| C[Set <b>a_adj0</b> = 1]
+    B -->|if - q2 & q3| D[Set <b>a_adj1</b> = 1]
+    B -->|Otherwise| E[Skip <b>a_adj0</b> and <b>a_adj1</b>]
 
-    C --> E{Check q2 and q3: Are both public spaces?}
-    D --> E
+    C --> F{Compute XOR: Exactly one pair of public spaces?}
+    D --> F
+    E --> F
 
-    E -->|Yes| F[Set a_adj1 = 1]
-    E -->|No| G[Skip setting a_adj1]
+    F -->|Yes| G[val = 1: Valid]
+    F -->|No| H[val = 0: Invalid]
 
-    F --> H{Compute XOR: Is exactly one pair public spaces?}
-    G --> H
+    G --> I[Reset Variables & Output Result]
+    H --> I
+    I --> o(( ))
 
-    H -->|Yes| I[Set val = 1 - Valid Configuration]
-    H -->|No| J[Set val = 0 - Invalid Configuration]
-
-    I --> K[Uncompute: Reset a_adj0, a_adj1, and a_xor]
-    J --> K
-
-    K --> L[Output Result: val = 1 - Valid or val = 0 - Invalid]
-    L --> M[End]
+    %% Add a styled note with HTML-like syntax
+    F -.-> N["<div style='font-style: italic; font-size: 14px;'>Note on XOR: We do this with CNOT it Outputs true if exactly one input is true, false otherwise</div>"]
