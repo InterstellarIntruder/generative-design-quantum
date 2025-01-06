@@ -112,15 +112,48 @@ def build_grover_circuit(num_iterations):
         oracle_nonoverlapping_adjacency(circuit, qubits)
 
         # Diffusion operator (reflection about mean)
+        # This operator amplifies the amplitude of marked states while reducing others
+        
         # 1. H gates to change basis
+        # Transform from computational basis to Hadamard basis where the reflection is easier
+        # Example for one qubit: |0⟩ -> (|0⟩ + |1⟩)/√2, |1⟩ -> (|0⟩ - |1⟩)/√2
         circuit.append(cirq.H.on_each(q0, q1, q2, q3))
+        
         # 2. Phase flip about zero state
+        # Apply X gates to all qubits to prepare for the controlled-Z operation
+        # This converts |0⟩ to |1⟩ and |1⟩ to |0⟩, allowing us to detect the |0000⟩ state
+        # Example: |0001⟩ -> |1110⟩
         circuit.append(cirq.X.on_each(q0, q1, q2, q3))
-        # 3. Multi-controlled Z gate (phase flip if all qubits are 1)
+        
+        # 3. Multi-controlled Z gate
+        # This is implementing a controlled-Z operation with multiple control qubits.
+        # Here's what happens step by step:
+        #
+        # a) The operation uses q0, q1, q2 as control qubits and q3 as the target
+        # b) The H gates surrounding the controlled-X create a controlled-Z:
+        #    - First H gate transforms: |0⟩ -> (|0⟩ + |1⟩)/√2, |1⟩ -> (|0⟩ - |1⟩)/√2
+        #    - Controlled-X applies
+        #    - Second H gate transforms back
+        #
+        # State transformation examples:
+        # |1110⟩ -> |1110⟩       (no change, not all controls are 1)
+        # |1111⟩ -> -|1111⟩      (phase flip, because all controls are 1)
+        # |0111⟩ -> |0111⟩       (no change, first qubit is 0)
+        #
+        # Why H gates? The controlled-Z operation is implemented using:
+        #   H → controlled-X → H
+        # This is because many quantum computers implement controlled-X (CNOT) 
+        # more efficiently than controlled-Z
         circuit.append(cirq.H(q3).controlled_by(q0, q1, q2))
+        
         # 4. Undo X gates
+        # Return qubits to their original states before the X gates
+        # Example: |1110⟩ -> |0001⟩
         circuit.append(cirq.X.on_each(q0, q1, q2, q3))
+        
         # 5. H gates to change back to computational basis
+        # Transform back from Hadamard basis to computational basis
+        # This completes the reflection about the mean operation
         circuit.append(cirq.H.on_each(q0, q1, q2, q3))
 
     # Step C: Measure the result
