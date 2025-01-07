@@ -13,13 +13,19 @@ Quantum computing offers possibilities for generative design and computational a
     - The potential impact on generative design
     - Overview of quantum principles for creative applications
 
-2. Quantum Turtle Graphics (Part 2)
+2. Quantum Turtle Graphics
     - Visualization of quantum states using turtle graphics
     - Implementation of quantum random walks
     - Creating quantum-inspired generative art
     - Two key examples demonstrating quantum principles:
       - Single Quantum Turtle: Demonstrates superposition and measurement
       - Entangled Turtles: Shows quantum entanglement and correlation
+
+3. Quantum Architect
+    - Application of Grover's algorithm to architectural design
+    - Quantum search for optimal room layouts
+    - Implementation of quantum oracles for design constraints
+    - Examples of quantum-assisted space planning
 
 ## Code Examples
 
@@ -37,4 +43,18 @@ The `entangled_turtles.py` module visualizes quantum entanglement:
 - "Spooky action at a distance"
 - Synchronized quantum measurements
 
-Both examples use turtle graphics to create mesmerizing patterns that help visualize these quantum phenomena in an intuitive and artistic way.
+### 3. Phase Turtles
+The `phase_turtle.py` module explores quantum phase and interference:
+- Quantum phase visualization
+- Interference patterns
+- Phase-dependent path selection
+- Complex amplitude representation
+
+### 4. Quantum Architect
+The `quantum_architect.py` module applies quantum computing to architectural design:
+- Grover's search algorithm implementation
+- Oracle design for spatial constraints
+- Room adjacency optimization
+- Binary encoding of architectural rules
+
+Both turtle examples use turtle graphics to create mesmerizing patterns that help visualize quantum phenomena in an intuitive and artistic way, while the Quantum Architect example demonstrates practical applications in design optimization.
