@@ -2,6 +2,8 @@ import cirq
 import numpy as np
 import random
 from drawing_utils import QuantumVisualizer
+from PIL import Image, ImageGrab
+import io
 
 class QuantumWalkAgent:
     def __init__(self):
@@ -12,6 +14,7 @@ class QuantumWalkAgent:
         self.qubit = cirq.GridQubit(0, 0)
         self.simulator = cirq.Simulator()
         self.visualizer = QuantumVisualizer()
+        self.frames = []  # Store frames for GIF
 
     def create_quantum_circuit(self):
         """Create a quantum circuit using phase interference patterns."""
@@ -72,6 +75,31 @@ class QuantumWalkAgent:
         """Use interference pattern to control turtle movement."""
         probability, phase = self.simulate_quantum_circuit()
         self.visualizer.visualize_step(probability, phase, max_step_length)
+        
+        # Capture frame after each step using ImageGrab
+        # Get the turtle window boundaries
+        canvas = self.visualizer.screen.getcanvas()
+        x = canvas.winfo_rootx()
+        y = canvas.winfo_rooty()
+        width = canvas.winfo_width()
+        height = canvas.winfo_height()
+        
+        # Capture the screen region of the turtle window
+        frame = ImageGrab.grab(bbox=(x, y, x + width, y + height))
+        self.frames.append(frame)
+
+    def save_animation(self, filename='quantum_walk.gif'):
+        """Save the captured frames as an animated GIF."""
+        if self.frames:
+            # Save the frames as an animated GIF
+            self.frames[0].save(
+                filename,
+                save_all=True,
+                append_images=self.frames[1:],
+                duration=100,  # Duration for each frame in milliseconds
+                loop=0
+            )
+            print(f"Animation saved as {filename}")
 
     def run(self, steps=100):
         """Perform the quantum random walk for a given number of steps."""
@@ -85,6 +113,9 @@ def main():
 
     # Run the quantum random walk
     agent.run(steps=200)
+
+    # Save the animation
+    agent.save_animation()
 
     # Keep the screen open until clicked
     agent.visualizer.cleanup()
